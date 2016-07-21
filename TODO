@@ -1,0 +1,4 @@
+- Find a solution for CPU_CORE
+- Find a solution for Shipper Tags
+- Support more modules
+- Regroup all configuration into one file by levaraging enabled: true/false
