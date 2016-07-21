@@ -1,7 +1,5 @@
 # Docker Elastic.co Metricbeat
 
-- ```5.0.0-alpha4-1```
-
 [![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://badge.imagelayers.io/athieriot/metricbeat:latest.svg)](https://imagelayers.io/?images=athieriot/metricbeat:latest 'Get your own badge on imagelayers.io')
 
 Docker image for Elastic Metricbeat

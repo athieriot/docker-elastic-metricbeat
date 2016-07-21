@@ -52,7 +52,7 @@ name: ${SHIPPER_NAME}
 
 # The tags of the shipper are included in their own field with each
 # transaction published.
-tags: [${SHIPPER_TAGS}]
+#tags: [${SHIPPER_TAGS}]
 
 # Optional fields that you can specify to add additional information to the
 # output.
