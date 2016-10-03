@@ -1,6 +1,6 @@
 # Docker Elastic.co Metricbeat
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://badge.imagelayers.io/athieriot/metricbeat:latest.svg)](https://imagelayers.io/?images=athieriot/metricbeat:latest 'Get your own badge on imagelayers.io')
+[![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://images.microbadger.com/badges/image/athieriot/metricbeat.svg)](https://microbadger.com/images/athieriot/metricbeat "Get your own image badge on microbadger.com") [![](https://badge.imagelayers.io/athieriot/metricbeat:latest.svg)](https://imagelayers.io/?images=athieriot/metricbeat:latest 'Get your own badge on imagelayers.io')
 
 Docker image for Elastic Metricbeat
 
@@ -87,3 +87,4 @@ Somehow, when Elasticsearch is launched inside a container it is inaccessible fr
 A configuration has to be set for it to work properly. Change IP as needed.
 
       docker run --name=elasticsearch elasticsearch elasticsearch -Des.network.bind_host=0.0.0.0
+ 
