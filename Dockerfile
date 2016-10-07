@@ -1,28 +1,22 @@
-FROM alpine:3.4
+FROM frolvlad/alpine-glibc
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-ENV METRICBEAT_VERSION=5.0.0-alpha4
+ENV METRICBEAT_VERSION=5.0.0-beta1
 
-RUN apk update && \
-    apk add \
+RUN apk add --no-cache \
       ca-certificates \
-      curl && \
-    rm -rf /var/cache/apk/*
+      curl
 
-#RUN curl -L -O https://download.elastic.co/beats/metricbeat/metricbeat-${METRICBEAT_VERSION}-linux-x86_64.tar.gz && \
-#    tar -xvvf metricbeat-${METRICBEAT_VERSION}-linux-x86_64.tar.gz && \
-#    mv metricbeat-${METRICBEAT_VERSION}-linux-x86_64/ /etc/metricbeat && \
-#    mv /etc/metricbeat/metricbeat.yml /etc/metricbeat/metricbeat.example.yml && \
-#    mv /etc/metricbeat/metricbeat /bin/metricbeat
-
-ADD bin/metricbeat /bin/
-
-#RUN curl -L -O http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz && \
-#    mkdir -p /usr/share/GeoIP && \
-#    gunzip -c GeoLiteCity.dat.gz > /usr/share/GeoIP/GeoLiteCity.dat
+RUN curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-${METRICBEAT_VERSION}-linux-x86_64.tar.gz && \
+    tar -xvvf metricbeat-${METRICBEAT_VERSION}-linux-x86_64.tar.gz && \
+    mv metricbeat-${METRICBEAT_VERSION}-linux-x86_64/ /metricbeat && \
+    mv /metricbeat/metricbeat.yml /metricbeat/metricbeat.example.yml && \
+    mv /metricbeat/metricbeat /bin/metricbeat && \
+    chmod +x /bin/metricbeat && \
+    mkdir -p /metricbeat/config /metricbeat/data
 
 WORKDIR /metricbeat
 
-ADD files/ .
+ADD start.sh /metricbeat/start.sh
 
 CMD /metricbeat/start.sh
