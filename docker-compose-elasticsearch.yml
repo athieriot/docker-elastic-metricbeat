@@ -3,21 +3,26 @@ version: '2'
 services:
   kibana:
     image: kibana
+    restart: unless-stopped
     ports:
       - "5601:5601"
-    links:
+    depends_on:
       - elasticsearch
     environment:
       - ELASTICSEARCH_URL=http://elasticsearch:9200
 
   elasticsearch:
     image: elasticsearch
+    restart: unless-stopped
     command: elasticsearch -Des.network.bind_host=0.0.0.0
 
   metricbeat:
     build: .
-    links:
-      - elasticsearch
+    restart: unless-stopped
     pid: host
+    volumes:
+      - ./metricbeat.yml:/metricbeat/metricbeat.yml
+    depends_on:
+      - elasticsearch
     environment:
-      - SHIPPER_NAME=DOCKY
+      - ELASTICSEARCH_URL=http://elasticsearch:9200

@@ -4,80 +4,45 @@
 
 Docker image for Elastic Metricbeat
 
-# Usage
+# Simple usage
 
-### Elasticsearch
+```sh
+docker run -d \
+  -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
+  --name=metricbeat \
+  --pid=host \
+  athieriot/metricbeat
+```
 
-      docker run -d \
-        --link=elasticsearch:elasticsearch \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
-      
-### Logstash
+# Custom config
 
-      docker run -d \
-        -e PROFILE=logstash \
-        --link=logstash:logstash \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
+Mount your custom `metricbeat.yml` under `/metricbeat/metricbeat.yml`
 
-### File
+```sh
+docker run -d \
+  -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
+  -v ./metricbeat.yml:/metricbeat/metricbeat.yml \
+  --name=metricbeat \
+  --pid=host \
+  athieriot/metricbeat
+```
 
-      docker run -d \
-        -e PROFILE=file \
-        -v /path/to/data/:/metricbeat/data/ \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
+# Docker compose
 
-### Console
+For docker-compose example  [docker-compose-elasticsearch.yml](https://github.com/athieriot/docker-elastic-metricbeat/blob/master/docker-compose-elasticsearch.yml)
 
-      docker run -d \
-        -e PROFILE=console \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
+```sh
+cp docker-compose-elasticsearch.yml docker-compose.yml
+docker-compose up
+```
 
-### Custom configuration file
+Open kibana dashboard in your favorite browser `http://localhost:5601/`
 
-      docker run -d \
-        -e PROFILE=custom \
-        -v /path/to/config/metricbeat.yml:/metricbeat/config/metricbeat.yml \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
+# Loading Sample Kibana Dashboards
 
-# More variables
-
-### General
-
-      docker run -d \
-        -e HOST=elasticsearch.in.aws.com \
-        -e PORT=80 \
-        -e CPU_PER_CORE=false \
-        -e INDEX=metricbeat \
-        -e PROCS=.* \
-        -e PERIOD=10s \
-        -e SHIPPER_NAME=super-app \
-        -e SHIPPER_TAGS="qa", "db" \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
-
-### Elasticsearch template configuration
-
-In the event you are usage a custom configuration or logstash but want to add metricbeat templates to your own Elasticsearch instance:
-
-      docker run -d \
-        -e PROFILE=logstash \
-        -e EXTERNAL_ELASTIC_HOST=my.elasticsearch.com \
-        -e EXTERNAL_ELASTIC_PORT=9200 \
-        --link=logstash:logstash \
-        --name=metricbeat \
-        --pid=host \
-        athieriot/metricbeat
+```sh
+docker-compose exec metricbeat sh -c './scripts/import_dashboards -es $ELASTICSEARCH_URL'
+```
 
 # Troubleshouting
 
