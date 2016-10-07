@@ -6,7 +6,7 @@
 
 Docker image for Elastic Metricbeat
 
-# Simple usage
+## Simple usage
 
 ```sh
 docker run -d \
@@ -16,7 +16,7 @@ docker run -d \
   athieriot/metricbeat
 ```
 
-# Custom config
+## Custom config
 
 Mount your custom `metricbeat.yml` under `/metricbeat/metricbeat.yml`
 
@@ -29,7 +29,7 @@ docker run -d \
   athieriot/metricbeat
 ```
 
-# Docker compose
+## Docker compose
 
 For docker-compose example  [docker-compose-elasticsearch.yml](https://github.com/athieriot/docker-elastic-metricbeat/blob/master/docker-compose-elasticsearch.yml)
 
@@ -40,13 +40,13 @@ docker-compose up
 
 Open kibana dashboard in your favorite browser `http://localhost:5601/`
 
-# Loading Sample Kibana Dashboards
+## Loading Sample Kibana Dashboards
 
 ```sh
 docker-compose exec metricbeat sh -c './scripts/import_dashboards -es $ELASTICSEARCH_URL'
 ```
 
-# Troubleshouting
+## Troubleshouting
 
 ### Elasticsearch host inavailable within a container
 
@@ -54,4 +54,7 @@ Somehow, when Elasticsearch is launched inside a container it is inaccessible fr
 A configuration has to be set for it to work properly. Change IP as needed.
 
       docker run --name=elasticsearch elasticsearch elasticsearch -Des.network.bind_host=0.0.0.0
- 
+
+## License
+
+This program is licensed under an MIT license with an additional non-advertising clause. See [LICENSE](https://github.com/athieriot/docker-elastic-metricbeat/blob/master/LICENSE) for the full text.
