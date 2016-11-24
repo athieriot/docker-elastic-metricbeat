@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-glibc
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-ENV METRICBEAT_VERSION=5.0.0-rc1
+ENV METRICBEAT_VERSION=5.0.1
 
 RUN apk add --no-cache \
       ca-certificates \
