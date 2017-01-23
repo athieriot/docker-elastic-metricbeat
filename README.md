@@ -1,6 +1,6 @@
 # Docker Elastic.co Metricbeat
 
-- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```, ```5.1.1```
+- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```, ```5.1.1```, ```5.1.2```
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://images.microbadger.com/badges/image/athieriot/metricbeat.svg)](https://microbadger.com/images/athieriot/metricbeat "Get your own image badge on microbadger.com")
 
@@ -50,10 +50,14 @@ docker-compose exec metricbeat sh -c './scripts/import_dashboards -es $ELASTICSE
 
 ### Elasticsearch host inavailable within a container
 
-Somehow, when Elasticsearch is launched inside a container it is inaccessible from another linked container.
+When Elasticsearch is launched inside a container it is inaccessible from another linked container.
 A configuration has to be set for it to work properly. Change IP as needed.
 
-      docker run --name=elasticsearch elasticsearch elasticsearch -Des.network.bind_host=0.0.0.0
+      docker run --name=elasticsearch elasticsearch elasticsearch -Etransport.host=0.0.0.0
+
+In order to pass the bootstrap checks you will also need to run that command on the host machine:
+
+      sysctl -q -w vm.max_map_count=262144
 
 ## License
 
