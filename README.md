@@ -1,6 +1,6 @@
 # Docker Elastic.co Metricbeat
 
-- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```, ```5.1.1```, ```5.1.2```
+- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```, ```5.1.1```, ```5.1.2```, ```5.2.0```
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://images.microbadger.com/badges/image/athieriot/metricbeat.svg)](https://microbadger.com/images/athieriot/metricbeat "Get your own image badge on microbadger.com")
 
@@ -8,25 +8,28 @@ Docker image for Elastic Metricbeat
 
 ## Simple usage
 
+Providing your custom `metricbeat.yml` under `/metricbeat/metricbeat.yml`
+
 ```sh
 docker run -d \
   -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
+  -v /home/username/metricbeat.yml:/metricbeat/metricbeat.yml \
   --name=metricbeat \
   --pid=host \
   athieriot/metricbeat
 ```
 
-## Custom config
+## Official recommendations
 
-Mount your custom `metricbeat.yml` under `/metricbeat/metricbeat.yml`
+More details: https://www.elastic.co/guide/en/beats/metricbeat/5.x/running-in-container.html
 
 ```sh
 docker run -d \
-  -e ELASTICSEARCH_URL=http://elasticsearch:9200 \
-  -v ./metricbeat.yml:/metricbeat/metricbeat.yml \
-  --name=metricbeat \
-  --pid=host \
-  athieriot/metricbeat
+     -v=/proc:/hostfs/proc:ro \
+     -v=/sys/fs/cgroup:/hostfs/sys/fs/cgroup:ro \
+     -volume=/:/hostfs:ro \
+     -v /home/username/metricbeat.yml:/metricbeat/metricbeat.yml \
+     athieriot/metricbeat -system.hostfs=/hostfs
 ```
 
 ## Docker compose

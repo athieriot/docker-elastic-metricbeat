@@ -18,5 +18,5 @@ if [ $ELASTICSEARCH_URL ]; then
 fi
 
 if [ -z $DRY_RUN ]; then
-  metricbeat -e -v -c /metricbeat/metricbeat.yml
+  metricbeat -e -v -c /metricbeat/metricbeat.yml $@
 fi

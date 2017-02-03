@@ -1,7 +1,7 @@
 FROM frolvlad/alpine-glibc
 MAINTAINER Aurélien Thieriot <aurelien@scalar.is>
 
-ENV METRICBEAT_VERSION=5.1.2
+ENV METRICBEAT_VERSION=5.2.0
 
 RUN apk add --no-cache \
       ca-certificates \
@@ -19,4 +19,4 @@ WORKDIR /metricbeat
 
 ADD start.sh /metricbeat/start.sh
 
-CMD /metricbeat/start.sh
+ENTRYPOINT /metricbeat/start.sh
