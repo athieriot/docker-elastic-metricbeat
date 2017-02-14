@@ -1,6 +1,8 @@
 # Docker Elastic.co Metricbeat
 
-- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```, ```5.1.1```, ```5.1.2```, ```5.2.0```
+- ```5.2.0```, ```5.2.1```
+- ```5.1.1```, ```5.1.2```
+- ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/athieriot/metricbeat.svg)]() [![](https://images.microbadger.com/badges/image/athieriot/metricbeat.svg)](https://microbadger.com/images/athieriot/metricbeat "Get your own image badge on microbadger.com")
 
