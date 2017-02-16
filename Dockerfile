@@ -13,7 +13,8 @@ RUN curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbea
     mv /metricbeat/metricbeat.yml /metricbeat/metricbeat.example.yml && \
     mv /metricbeat/metricbeat /bin/metricbeat && \
     chmod +x /bin/metricbeat && \
-    mkdir -p /metricbeat/config /metricbeat/data
+    mkdir -p /metricbeat/config /metricbeat/data && \
+    rm metricbeat-${METRICBEAT_VERSION}-linux-x86_64.tar.gz
 
 WORKDIR /metricbeat
 
