@@ -1,6 +1,6 @@
 # Docker Elastic.co Metricbeat
 
-- ```5.3.0```, ```5.3.1```
+- ```5.3.0```, ```5.3.1```, ```5.3.2```
 - ```5.2.0```, ```5.2.1```, ```5.2.2```
 - ```5.1.1```, ```5.1.2```
 - ```5.0.0-rc1```, ```5.0.1```, ```5.0.2```
@@ -58,9 +58,11 @@ docker-compose exec metricbeat sh -c './scripts/import_dashboards -es $ELASTICSE
 
 Since Metricbeat 5.3, permissions needs to comply to certain constraint in order for the service to start.
 
-Please be aware that this Docker Image will automatically change the permissions on your config file to make it compliant.
+By default, this Docker Image will automatically change the permissions on your config file to make it compliant.
 
-See: https://github.com/elastic/beats/pull/3544 and https://github.com/elastic/beats/pull/3689
+This behaviour can be disabled using:
+
+      -e SKIP_CHOWN_CONFIG=true
 
 ### Elasticsearch host inavailable within a container
 
