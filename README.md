@@ -1,5 +1,11 @@
 # Docker Elastic.co Metricbeat
 
+**DEPRECATED**
+
+This image is now deprecated in favor of the official Beats image provided by elastic.co which is available to pull via docker.elastic.co/beats/metricbeat:[version] like 5.4.0. This image will receive no further updates.
+
+Elastic provides open-source support for Metricbeat via the [elastic/beats](https://github.com/elastic/beats) GitHub repository and the Docker image via the [elastic/beats-docker](https://github.com/elastic/beats-docker) GitHub repository.
+
 - ```5.4.0```
 - ```5.3.0```, ```5.3.1```, ```5.3.2```
 - ```5.2.0```, ```5.2.1```, ```5.2.2```
